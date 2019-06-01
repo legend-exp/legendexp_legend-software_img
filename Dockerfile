@@ -25,7 +25,7 @@ COPY provisioning/install-sw-scripts/g4simple-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/g4simple/bin:$PATH"
 
-RUN provisioning/install-sw.sh g4simple legend-exp/f7568e5 /opt/g4simple
+RUN provisioning/install-sw.sh g4simple legend-exp/9c31e8c /opt/g4simple
 
 
 # Install gears:
