@@ -11,4 +11,4 @@ In addition to `legendexp/legend-base`, the open-source software stack contains:
 
 Builds of this image are [available on Dockerhub](https://hub.docker.com/r/legendexp/legend-software/).
 
-See [`legendexp/legend-base:lean`](https://github.com/legend-exp/legendexp_legend-base_img/tree/lean) for container usage instructions (substitute "legendexp/legend-software" for "legendexp/legend-base:latest").
+See [`legendexp/legend-base`](https://github.com/legend-exp/legendexp_legend-base_img) for container usage instructions (substitute "legendexp/legend-software" for "legendexp/legend-base:latest").
