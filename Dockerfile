@@ -1,4 +1,4 @@
-FROM legendexp/legend-base:lean
+FROM legendexp/legend-base:latest
 
 # Install Julia packages
 
