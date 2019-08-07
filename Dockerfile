@@ -16,7 +16,7 @@ COPY provisioning/install-sw-scripts/pygama-* provisioning/install-sw-scripts/
 
 ENV PYTHONPATH="/opt/pygama/lib/python3.7/site-packages:$PYTHONPATH"
 
-RUN provisioning/install-sw.sh pygama legend-exp/2e84c66 /opt/pygama
+RUN provisioning/install-sw.sh pygama legend-exp/3672ed2 /opt/pygama
 
 
 # Install g4simple:
@@ -25,7 +25,7 @@ COPY provisioning/install-sw-scripts/g4simple-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/g4simple/bin:$PATH"
 
-RUN provisioning/install-sw.sh g4simple legend-exp/9c31e8c /opt/g4simple
+RUN provisioning/install-sw.sh g4simple legend-exp/e854866 /opt/g4simple
 
 
 # Install gears:
@@ -34,4 +34,4 @@ COPY provisioning/install-sw-scripts/gears-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/gears/bin:$PATH"
 
-RUN provisioning/install-sw.sh gears jintonic/c7b9000 /opt/gears
+RUN provisioning/install-sw.sh gears jintonic/d44b23a /opt/gears
