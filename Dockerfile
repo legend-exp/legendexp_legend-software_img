@@ -16,7 +16,7 @@ COPY provisioning/install-sw-scripts/pygama-* provisioning/install-sw-scripts/
 
 ENV PYTHONPATH="/opt/pygama/lib/python3.7/site-packages:$PYTHONPATH"
 
-RUN provisioning/install-sw.sh pygama legend-exp/3672ed2 /opt/pygama
+RUN provisioning/install-sw.sh pygama legend-exp/91c8f5d /opt/pygama
 
 
 # Install g4simple:
