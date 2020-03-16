@@ -24,12 +24,13 @@ pkg_install() {
     export LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | sed 's/:$//'`
 
     CPLUS_INCLUDE_PATH="${hdf5_include_dir}" make csv hdf5 xml
+    CPLUS_INCLUDE_PATH="${hdf5_include_dir}" make
 
     mkdir -p "${INSTALL_PREFIX}/bin"
-    cp -a gears.exe "${INSTALL_PREFIX}/bin/gears-root"
-    cp -a gcsv.exe "${INSTALL_PREFIX}/bin/gears-csv"
-    cp -a ghdf5.exe "${INSTALL_PREFIX}/bin/gears-hdf5"
-    cp -a gxml.exe "${INSTALL_PREFIX}/bin/gears-xml"
+    cp -a gears "${INSTALL_PREFIX}/bin/gears-root"
+    cp -a gcsv "${INSTALL_PREFIX}/bin/gears-csv"
+    cp -a ghdf5 "${INSTALL_PREFIX}/bin/gears-hdf5"
+    cp -a gxml "${INSTALL_PREFIX}/bin/gears-xml"
 }
 
 
