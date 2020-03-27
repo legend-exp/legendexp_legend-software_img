@@ -1,13 +1,10 @@
 FROM legendexp/legend-base:latest
 
-# Install Julia packages
+# Install LEGNED Julia tutorial:
 
-COPY provisioning/data/julia/environment /opt/julia/local/share/julia/environments/v1.1
+COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
 
-RUN true \
-    && export JULIA_DEPOT_PATH="/opt/julia/local/share/julia" \
-	&& export JUPYTER_DATA_DIR="/opt/anaconda3/share/jupyter" \
-    && julia -e 'using Pkg; pkg"instantiate; precompile"'
+RUN provisioning/install-sw.sh juliatutorial legend-exp/6c91d68 /opt/legend-julia-tutorial
 
 
 # Install pygama:
@@ -16,7 +13,7 @@ COPY provisioning/install-sw-scripts/pygama-* provisioning/install-sw-scripts/
 
 ENV PYTHONPATH="/opt/pygama/lib/python3.7/site-packages:$PYTHONPATH"
 
-RUN provisioning/install-sw.sh pygama legend-exp/6fb0156 /opt/pygama
+RUN provisioning/install-sw.sh juliatutorial legend-exp/6fb0156 /opt/pygama
 
 
 # Install g4simple:
