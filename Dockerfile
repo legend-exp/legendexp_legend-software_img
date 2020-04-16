@@ -13,7 +13,7 @@ COPY provisioning/install-sw-scripts/pygama-* provisioning/install-sw-scripts/
 
 ENV PYTHONPATH="/opt/pygama/lib/python3.7/site-packages:$PYTHONPATH"
 
-RUN provisioning/install-sw.sh juliatutorial legend-exp/a3923df /opt/pygama
+RUN provisioning/install-sw.sh juliatutorial legend-exp/v0.1-Nov2019 /opt/pygama
 
 
 # Install g4simple:
