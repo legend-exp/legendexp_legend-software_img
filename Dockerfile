@@ -22,7 +22,7 @@ COPY provisioning/install-sw-scripts/g4simple-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/g4simple/bin:$PATH"
 
-RUN provisioning/install-sw.sh g4simple legend-exp/7737003 /opt/g4simple
+RUN provisioning/install-sw.sh g4simple legend-exp/614a797 /opt/g4simple
 
 
 # Install gears:
@@ -31,4 +31,4 @@ COPY provisioning/install-sw-scripts/gears-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/gears/bin:$PATH"
 
-RUN provisioning/install-sw.sh gears jintonic/8cb3885 /opt/gears
+RUN provisioning/install-sw.sh gears jintonic/80deaee /opt/gears
