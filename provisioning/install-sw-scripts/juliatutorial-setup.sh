@@ -26,6 +26,8 @@ pkg_install() {
     mkdir tmpprj
     cp -a "${INSTALL_PREFIX}/Project.toml" "${INSTALL_PREFIX}/Manifest.toml" tmpprj
     julia --project=tmpprj -e 'using Pkg; pkg"update; precompile"'
+
+    chmod -R go+rX  "$JULIA_DEPOT_PATH"
 }
 
 
