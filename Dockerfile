@@ -6,6 +6,8 @@ COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scr
 
 RUN provisioning/install-sw.sh juliatutorial legend-exp/d42c2fd /opt/legend-julia-tutorial
 
+ENV JULIA_PROJECT="/opt/julia/local/share/julia/environments/v1.5"
+
 
 # Install pygama:
 
