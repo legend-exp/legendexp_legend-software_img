@@ -36,7 +36,7 @@ pkg_install() {
 
     (cd "${INSTALL_PREFIX}" && julia "build_sysimage.jl")
     mv "${DEFAULT_SYSIMG}" "${DEFAULT_SYSIMG}.backup"
-    mv "${INSTALL_PREFIX}/julia_sysimage.so" "${DEFAULT_SYSIMG}"
+    mv "${INSTALL_PREFIX}/JuliaSysimage.so" "${DEFAULT_SYSIMG}"
 
     rm -rf /opt/julia/local/share/julia/logs
     chmod -R go+rX  "$JULIA_DEPOT_PATH"

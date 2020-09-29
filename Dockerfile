@@ -4,7 +4,7 @@ FROM legendexp/legend-base:latest
 
 COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
 
-RUN provisioning/install-sw.sh juliatutorial legend-exp/d42c2fd /opt/legend-julia-tutorial
+RUN provisioning/install-sw.sh juliatutorial legend-exp/05efba3 /opt/legend-julia-tutorial
 
 
 # Install pygama:
