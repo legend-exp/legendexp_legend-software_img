@@ -31,4 +31,4 @@ COPY provisioning/install-sw-scripts/gears-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/gears/bin:$PATH"
 
-RUN provisioning/install-sw.sh gears jintonic/0da27a8 /opt/gears
+RUN provisioning/install-sw.sh gears jintonic/bbdbde2 /opt/gears
