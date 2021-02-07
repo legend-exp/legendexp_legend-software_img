@@ -1,10 +1,10 @@
 FROM legendexp/legend-base:latest
 
-# Install LEGNED Julia tutorial:
+# Install LEGEND Julia tutorial:
 
 COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
 
-RUN provisioning/install-sw.sh juliatutorial legend-exp/05efba3 /opt/legend-julia-tutorial
+RUN provisioning/install-sw.sh juliatutorial legend-exp/b3d91e6 /opt/legend-julia-tutorial
 
 
 # Install pygama:

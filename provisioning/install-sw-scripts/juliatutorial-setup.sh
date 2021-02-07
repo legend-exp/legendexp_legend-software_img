@@ -26,17 +26,17 @@ pkg_install() {
     export OPENBLAS_NUM_THREADS="${DEFAULT_NUM_THREADS}"
     export OMP_NUM_THREADS="${DEFAULT_NUM_THREADS}"
 
-    julia -e 'using Pkg; Pkg.update()'
+    mkdir -p "${JULIA_PROJECT}"
     cp -a "${INSTALL_PREFIX}"/{Project.toml,Manifest.toml} "${JULIA_PROJECT}"
     julia -e 'import Pkg; Pkg.instantiate()'
-    julia -e 'using Pkg; Pkg.add("IJulia"; preserve=Pkg.PRESERVE_ALL); Pkg.build("IJulia")'
+    julia -e 'using Pkg; Pkg.add(["IJulia", "Interact", "WebIO", "Observables", "Widgets", "PackageCompiler"]; preserve=Pkg.PRESERVE_ALL); Pkg.build("IJulia")'
     julia -e 'import Pkg; Pkg.precompile()'
+    julia -e 'import WebIO; WebIO.install_jupyter_nbextension(); WebIO.install_jupyter_labextension()'
 
     DEFAULT_SYSIMG=`julia -e 'import Libdl; println(abspath(Sys.BINDIR, "..", "lib", "julia", "sys." * Libdl.dlext))'`
-
-    (cd "${INSTALL_PREFIX}" && julia "build_sysimage.jl")
+    julia "${INSTALL_PREFIX}/build_sysimage.jl" "${JULIA_PROJECT}"
     mv "${DEFAULT_SYSIMG}" "${DEFAULT_SYSIMG}.backup"
-    mv "${INSTALL_PREFIX}/JuliaSysimage.so" "${DEFAULT_SYSIMG}"
+    mv "${JULIA_PROJECT}/JuliaSysimage.so" "${DEFAULT_SYSIMG}"
 
     rm -rf /opt/julia/local/share/julia/logs
     chmod -R go+rX  "$JULIA_DEPOT_PATH"
