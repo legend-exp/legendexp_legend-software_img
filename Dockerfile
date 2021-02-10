@@ -7,13 +7,18 @@ COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scr
 RUN provisioning/install-sw.sh juliatutorial legend-exp/b3d91e6 /opt/legend-julia-tutorial
 
 
-# Install pygama:
+# Install LEGEND Python packages:
 
-COPY provisioning/install-sw-scripts/pygama-* provisioning/install-sw-scripts/
+COPY \
+    provisioning/install-sw-scripts/pygama-* \
+    provisioning/install-sw-scripts/pyfcutils-* \
+    provisioning/install-sw-scripts/
 
-ENV PYTHONPATH="/opt/pygama/lib/python3.7/site-packages:$PYTHONPATH"
+ENV PYTHONPATH="/opt/legend-python/lib/python3.8/site-packages:$PYTHONPATH"
 
-RUN provisioning/install-sw.sh pygama legend-exp/v0.1-Nov2019 /opt/pygama
+RUN true \
+    && provisioning/install-sw.sh pygama legend-exp/v0.4 /opt/legend-python \
+    && provisioning/install-sw.sh pyfcutils legend-exp/52e5225 /opt/legend-python
 
 
 # Install g4simple:
