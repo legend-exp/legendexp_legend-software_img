@@ -4,7 +4,7 @@ FROM legendexp/legend-base:latest
 
 COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
 
-RUN provisioning/install-sw.sh juliatutorial legend-exp/3ece236 /opt/legend-julia-tutorial
+RUN provisioning/install-sw.sh juliatutorial legend-exp/0d296fe /opt/legend-julia-tutorial
 
 
 # Install LEGEND Python packages:
