@@ -31,7 +31,6 @@ pkg_install() {
     julia -e 'import Pkg; Pkg.instantiate()'
     julia -e 'using Pkg; Pkg.add(["IJulia", "Interact", "WebIO", "Observables", "Widgets", "PackageCompiler"]; preserve=Pkg.PRESERVE_ALL); Pkg.build("IJulia")'
     julia -e 'import Pkg; Pkg.precompile()'
-    julia -e 'import WebIO; WebIO.install_jupyter_nbextension(); WebIO.install_jupyter_labextension()'
 
     DEFAULT_SYSIMG=`julia -e 'import Libdl; println(abspath(Sys.BINDIR, "..", "lib", "julia", "sys." * Libdl.dlext))'`
     julia "${INSTALL_PREFIX}/build_sysimage.jl" "${JULIA_PROJECT}"
