@@ -33,8 +33,9 @@ pkg_install() {
     julia -e 'import Pkg; Pkg.precompile()'
 
     DEFAULT_SYSIMG=`julia -e 'import Libdl; println(abspath(Sys.BINDIR, "..", "lib", "julia", "sys." * Libdl.dlext))'`
+    DEFAULT_SYSIMG_BACKUP=`julia -e 'import Libdl; println(abspath(Sys.BINDIR, "..", "lib", "julia", "sys-orig." * Libdl.dlext))'`
     julia "${INSTALL_PREFIX}/build_sysimage.jl" "${JULIA_PROJECT}"
-    mv "${DEFAULT_SYSIMG}" "${DEFAULT_SYSIMG}.backup"
+    mv "${DEFAULT_SYSIMG}" "${DEFAULT_SYSIMG_BACKUP}"
     mv "${JULIA_PROJECT}/JuliaSysimage.so" "${DEFAULT_SYSIMG}"
 
     rm -rf /opt/julia/local/share/julia/logs
