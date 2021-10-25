@@ -29,7 +29,7 @@ pkg_install() {
     mkdir -p "${JULIA_PROJECT}"
     cp -a "${INSTALL_PREFIX}"/{Project.toml,Manifest.toml} "${JULIA_PROJECT}"
     julia -e 'import Pkg; Pkg.instantiate()'
-    julia -e 'using Pkg; Pkg.add(["IJulia", "Interact", "WebIO", "Observables", "Widgets", "Pluto", "PlutoUI", "PackageCompiler", "BenchmarkTools", "Revise", "PProf", "StatProfilerHTML", "CPUSummary", "Hwloc", "CUDA", "CUDA_compat_jll", "CUDAKernels"]; preserve=Pkg.PRESERVE_ALL); Pkg.build("IJulia")'
+    julia -e 'using Pkg; Pkg.add(["IJulia", "Observables", "Widgets", "Pluto", "PlutoUI", "PackageCompiler", "BenchmarkTools", "Revise", "PProf", "StatProfilerHTML", "CPUSummary", "Hwloc", "CUDA", "CUDA_compat_jll", "CUDAKernels"]; preserve=Pkg.PRESERVE_ALL); Pkg.build("IJulia")'
     julia -e 'import Pkg; Pkg.precompile()'
 
     DEFAULT_SYSIMG=`julia -e 'import Libdl; println(abspath(Sys.BINDIR, "..", "lib", "julia", "sys." * Libdl.dlext))'`
@@ -37,6 +37,9 @@ pkg_install() {
     julia "${INSTALL_PREFIX}/build_sysimage.jl" "${JULIA_PROJECT}"
     mv "${DEFAULT_SYSIMG}" "${DEFAULT_SYSIMG_BACKUP}"
     mv "${JULIA_PROJECT}/JuliaSysimage.so" "${DEFAULT_SYSIMG}"
+
+    # Install WebIO after building system image, doesn't find webio_jupyter_extension otherwise:
+    julia -e 'using Pkg; Pkg.add(["Interact", "WebIO"]; preserve=Pkg.PRESERVE_ALL); Pkg.precompile()'
 
     rm -rf /opt/julia/local/share/julia/logs
     chmod -R go+rX  "$JULIA_DEPOT_PATH"
