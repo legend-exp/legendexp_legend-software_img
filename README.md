@@ -7,6 +7,7 @@ In addition to `legendexp/legend-base`, the open-source software stack contains:
 * [pygama](https://github.com/legend-exp/pygama)
 * [g4simple](https://github.com/legend-exp/g4simple)
 * [gears](https://github.com/jintonic/gears)
+* [radware rw05](https://github.com/radforddc/rw05)
 * The Julia packages required by the [LEGEND Julia tutorial](https://github.com/legend-exp/legend-julia-tutorial), plus some additional Julia packages
 
 Builds of this image are [available on Dockerhub](https://hub.docker.com/r/legendexp/legend-software/).

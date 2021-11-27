@@ -37,3 +37,23 @@ COPY provisioning/install-sw-scripts/gears-* provisioning/install-sw-scripts/
 ENV PATH="/opt/gears/bin:$PATH"
 
 RUN provisioning/install-sw.sh gears jintonic/cc0ea98 /opt/gears
+
+
+# Install radware:
+
+COPY provisioning/install-sw-scripts/radware-* provisioning/install-sw-scripts/
+
+ENV \
+    PATH="/opt/rw05/bin:$PATH" \
+    \
+    RADWARE_HOME="/opt/rw05" \
+    RADWARE_FONT_LOC="/opt/rw05/font" \
+    RADWARE_ICC_LOC="/opt/rw05/icc" \
+    RADWARE_GFONLINE_LOC="/opt/rw05/doc"
+
+RUN true \
+    && yum install -y \
+        xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi \
+        xorg-x11-fonts-ISO8859-1-100dpi xorg-x11-fonts-ISO8859-1-75dpi \
+        xorg-x11-fonts-Type1 xorg-x11-fonts-misc \
+    && provisioning/install-sw.sh radware radforddc/fc7549f /opt/rw05
