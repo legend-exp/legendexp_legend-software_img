@@ -17,7 +17,7 @@ COPY \
 ENV PYTHONPATH="/opt/legend-python/lib/python3.8/site-packages:$PYTHONPATH"
 
 RUN true \
-    && provisioning/install-sw.sh pygama legend-exp/v0.6 /opt/legend-python \
+    && provisioning/install-sw.sh pygama legend-exp/v0.8 /opt/legend-python \
     && provisioning/install-sw.sh pyfcutils legend-exp/52e5225 /opt/legend-python
 
 
