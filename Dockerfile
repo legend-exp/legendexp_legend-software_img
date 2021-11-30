@@ -1,5 +1,12 @@
 FROM legendexp/legend-base:latest
 
+# Note: use
+#
+# DOCKER_BUILDKIT=1 docker build --ssh default -t legendexp/legend-software:latest .
+#
+# to build.
+
+
 # Install LEGEND Julia tutorial:
 
 COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
@@ -57,3 +64,25 @@ RUN true \
         xorg-x11-fonts-ISO8859-1-100dpi xorg-x11-fonts-ISO8859-1-75dpi \
         xorg-x11-fonts-Type1 xorg-x11-fonts-misc \
     && provisioning/install-sw.sh radware radforddc/fc7549f /opt/rw05
+
+
+# Add GitHub SSH host key
+
+RUN true \
+    && mkdir .ssh \
+    && ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
+
+
+# Install MGDO and MaGe
+
+COPY provisioning/install-sw-scripts/mage-* provisioning/install-sw-scripts/
+
+ENV \
+    PATH="/opt/mage/bin:$PATH" \
+    LD_LIBRARY_PATH="/opt/mage/lib:$LD_LIBRARY_PATH" \
+    MAGEDIR="/opt/mage" \
+    MGGENERATORDATA="/opt/mage/share/MaGe/generators" \
+    MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
+    ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:/opt/mage/include/mage:/opt/mage/include/mage-post-proc:$ROOT_INCLUDE_PATH"
+
+RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/89f6e26 /opt/mage
