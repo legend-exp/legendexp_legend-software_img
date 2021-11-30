@@ -10,6 +10,11 @@ In addition to `legendexp/legend-base`, the open-source software stack contains:
 * [radware rw05](https://github.com/radforddc/rw05)
 * The Julia packages required by the [LEGEND Julia tutorial](https://github.com/legend-exp/legend-julia-tutorial), plus some additional Julia packages
 
+Also, binaries of the following closed-source software are included:
+
+* [MGDO](https://github.com/mppmu/MGDO)
+* [MaGe](https://github.com/mppmu/MaGe)
+
 Builds of this image are [available on Dockerhub](https://hub.docker.com/r/legendexp/legend-software/).
 
 See [`legendexp/legend-base`](https://github.com/legend-exp/legendexp_legend-base_img) for container usage instructions (substitute `legendexp/legend-software` for `legendexp/legend-base`).
