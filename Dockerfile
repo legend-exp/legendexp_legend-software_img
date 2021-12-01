@@ -1,4 +1,4 @@
-FROM legendexp/legend-base:latest
+FROM legendexp/legend-base:ubuntu
 
 # Note: use
 #
@@ -58,12 +58,7 @@ ENV \
     RADWARE_ICC_LOC="/opt/rw05/icc" \
     RADWARE_GFONLINE_LOC="/opt/rw05/doc"
 
-RUN true \
-    && yum install -y \
-        xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi \
-        xorg-x11-fonts-ISO8859-1-100dpi xorg-x11-fonts-ISO8859-1-75dpi \
-        xorg-x11-fonts-Type1 xorg-x11-fonts-misc \
-    && provisioning/install-sw.sh radware radforddc/7844686 /opt/rw05
+RUN provisioning/install-sw.sh radware radforddc/7844686 /opt/rw05
 
 
 # Add GitHub SSH host key

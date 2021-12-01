@@ -27,9 +27,7 @@ pkg_install() {
     source "${g4prefix}/share/Geant4-${g4version}/geant4make/geant4make.sh"
     export G4WORKDIR="`pwd`/workdir"
 
-    devtoolset=`rpm -qa "devtoolset-*-gcc" | head -n1 | sed 's/-gcc.*//'`
-
-    scl enable "${devtoolset}" make
+    make
 
     mkdir -p "${INSTALL_PREFIX}/bin"
     cp -a "workdir/bin/Linux-g++/g4simple" "${INSTALL_PREFIX}/bin/"

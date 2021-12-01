@@ -21,13 +21,15 @@ pkg_install() {
     cd legend-swdev-scripts
     git checkout "${GIT_BRANCH}"
 
-    devtoolset=`rpm -qa "devtoolset-*-gcc" | head -n1 | sed 's/-gcc.*//'`
+    if (root-config --cflags | grep -q 'c++14') ; then
+        sed 's/-DCMAKE_INSTALL_PREFIX/-DCMAKE_CXX_STANDARD=14 -DCMAKE_INSTALL_PREFIX/' -i installMaGe.py
+    fi
 
     BUILDPATH="magebuildpath"
 
     mkdir -p "$INSTALL_PREFIX"
     mkdir -p "$BUILDPATH"
-    scl enable "${devtoolset}" -- /opt/anaconda3/bin/python3 installMaGe.py install \
+    python3 installMaGe.py install \
         --jobs=`nproc` \
         --authentication="ssh" \
         --magebranch="cmake" \
