@@ -35,8 +35,8 @@ pkg_install() {
     DEFAULT_SYSIMG=`julia -e 'import Libdl; println(abspath(Sys.BINDIR, "..", "lib", "julia", "sys." * Libdl.dlext))'`
     DEFAULT_SYSIMG_BACKUP=`julia -e 'import Libdl; println(abspath(Sys.BINDIR, "..", "lib", "julia", "sys-orig." * Libdl.dlext))'`
     julia "${INSTALL_PREFIX}/build_sysimage.jl" "${JULIA_PROJECT}"
-    mv "${DEFAULT_SYSIMG}" "${DEFAULT_SYSIMG_BACKUP}"
-    mv "${JULIA_PROJECT}/JuliaSysimage.so" "${DEFAULT_SYSIMG}"
+    # mv "${DEFAULT_SYSIMG}" "${DEFAULT_SYSIMG_BACKUP}"
+    # mv "${JULIA_PROJECT}/JuliaSysimage.so" "${DEFAULT_SYSIMG}"
 
     # Install WebIO after building system image, doesn't find webio_jupyter_extension otherwise:
     julia -e 'using Pkg; Pkg.add(["Interact", "WebIO"]; preserve=Pkg.PRESERVE_ALL); Pkg.precompile()'
