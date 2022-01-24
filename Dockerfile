@@ -43,7 +43,7 @@ COPY provisioning/install-sw-scripts/gears-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/gears/bin:$PATH"
 
-RUN provisioning/install-sw.sh gears jintonic/3b112dd /opt/gears
+RUN provisioning/install-sw.sh gears jintonic/8ab0f37 /opt/gears
 
 
 # Install radware:
