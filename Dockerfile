@@ -11,7 +11,7 @@ FROM legendexp/legend-base:latest
 
 COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
 
-RUN provisioning/install-sw.sh juliatutorial legend-exp/a567faf /opt/legend-julia-tutorial
+RUN provisioning/install-sw.sh juliatutorial legend-exp/4fb9cc2 /opt/legend-julia-tutorial
 
 
 # Install LEGEND Python packages:
@@ -34,7 +34,7 @@ COPY provisioning/install-sw-scripts/g4simple-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/g4simple/bin:$PATH"
 
-RUN provisioning/install-sw.sh g4simple legend-exp/ebdbfcb /opt/g4simple
+RUN provisioning/install-sw.sh g4simple legend-exp/59a89c7 /opt/g4simple
 
 
 # Install gears:
@@ -43,7 +43,7 @@ COPY provisioning/install-sw-scripts/gears-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/gears/bin:$PATH"
 
-RUN provisioning/install-sw.sh gears jintonic/8ab0f37 /opt/gears
+RUN provisioning/install-sw.sh gears jintonic/3b112dd /opt/gears
 
 
 # Install radware:
@@ -63,7 +63,7 @@ RUN true \
         xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi \
         xorg-x11-fonts-ISO8859-1-100dpi xorg-x11-fonts-ISO8859-1-75dpi \
         xorg-x11-fonts-Type1 xorg-x11-fonts-misc \
-    && provisioning/install-sw.sh radware radforddc/fc7549f /opt/rw05
+    && provisioning/install-sw.sh radware radforddc/7844686 /opt/rw05
 
 
 # Add GitHub SSH host key
