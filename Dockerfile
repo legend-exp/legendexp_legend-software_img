@@ -85,4 +85,4 @@ ENV \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
     ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:/opt/mage/include/mage:/opt/mage/include/mage-post-proc:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/89f6e26 /opt/mage
+RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/0a5e485 /opt/mage
