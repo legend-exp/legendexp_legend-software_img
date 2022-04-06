@@ -24,7 +24,7 @@ COPY \
 ENV PYTHONPATH="/opt/legend-python/lib/python3.8/site-packages:$PYTHONPATH"
 
 RUN true \
-    && provisioning/install-sw.sh pygama legend-exp/v0.8 /opt/legend-python \
+    && provisioning/install-sw.sh pygama legend-exp/v0.9.0 /opt/legend-python \
     && provisioning/install-sw.sh pyfcutils legend-exp/52e5225 /opt/legend-python
 
 
@@ -80,4 +80,4 @@ ENV \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
     ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:/opt/mage/include/mage:/opt/mage/include/mage-post-proc:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/89f6e26 /opt/mage
+RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/0a5e485 /opt/mage
