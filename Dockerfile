@@ -1,4 +1,4 @@
-FROM legendexp/legend-base:ubuntu
+FROM legendexp/legend-base:latest
 
 # Note: use
 #
