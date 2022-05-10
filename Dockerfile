@@ -24,8 +24,8 @@ COPY \
 ENV PYTHONPATH="/opt/legend-python/lib/python3.8/site-packages:$PYTHONPATH"
 
 RUN true \
-    && provisioning/install-sw.sh pygama legend-exp/v0.9.0 /opt/legend-python \
-    && provisioning/install-sw.sh pyfcutils legend-exp/52e5225 /opt/legend-python
+    && provisioning/install-sw.sh pygama legend-exp/0e3fb4d /opt/legend-python \
+    && provisioning/install-sw.sh pyfcutils legend-exp/v0.1.0 /opt/legend-python
 
 
 # Install g4simple:
@@ -58,12 +58,7 @@ ENV \
     RADWARE_ICC_LOC="/opt/rw05/icc" \
     RADWARE_GFONLINE_LOC="/opt/rw05/doc"
 
-RUN true \
-    && yum install -y \
-        xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi \
-        xorg-x11-fonts-ISO8859-1-100dpi xorg-x11-fonts-ISO8859-1-75dpi \
-        xorg-x11-fonts-Type1 xorg-x11-fonts-misc \
-    && provisioning/install-sw.sh radware radforddc/7844686 /opt/rw05
+RUN provisioning/install-sw.sh radware radforddc/7844686 /opt/rw05
 
 
 # Add GitHub SSH host key
@@ -85,4 +80,4 @@ ENV \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
     ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:/opt/mage/include/mage:/opt/mage/include/mage-post-proc:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/0a5e485 /opt/mage
+RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/58124c4 /opt/mage
