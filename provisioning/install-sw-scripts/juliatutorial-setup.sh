@@ -29,7 +29,9 @@ pkg_install() {
     mkdir -p "${JULIA_PROJECT}"
     cp -a "${INSTALL_PREFIX}"/{Project.toml,Manifest.toml} "${JULIA_PROJECT}"
     julia -e 'import Pkg; Pkg.instantiate()'
-    julia -e 'using Pkg; Pkg.add(["IJulia", "Observables", "Widgets", "Pluto", "PlutoUI", "PackageCompiler", "BenchmarkTools", "Revise", "PProf", "StatProfilerHTML", "CPUSummary", "Hwloc", "CUDA", "CUDA_compat_jll", "CUDAKernels"]; preserve=Pkg.PRESERVE_ALL); Pkg.build("IJulia")'
+    julia -e 'using Pkg; Pkg.add(["IJulia", "Interact", "Observables", "WebIO", "Widgets", "Pluto", "PlutoUI", "PackageCompiler", "BenchmarkTools", "Revise", "PProf", "StatProfilerHTML", "CPUSummary", "Hwloc", "CUDA", "CUDA_compat_jll", "CUDAKernels"]; preserve=Pkg.PRESERVE_ALL); Pkg.build("IJulia")'
+    # Interact and WebIO seem to cause trouble in a precompiled sysimage, remove and add back after:
+    julia -e 'using Pkg; Pkg.rm(["Interact", "WebIO"])'
     julia -e 'import Pkg; Pkg.precompile()'
 
     DEFAULT_SYSIMG=`julia -e 'import Libdl; println(abspath(Sys.BINDIR, "..", "lib", "julia", "sys." * Libdl.dlext))'`
