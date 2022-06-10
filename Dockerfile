@@ -21,7 +21,7 @@ COPY \
     provisioning/install-sw-scripts/pyfcutils-* \
     provisioning/install-sw-scripts/
 
-ENV PYTHONPATH="/opt/legend-python/lib/python3.8/site-packages:$PYTHONPATH"
+ENV PYTHONPATH="/opt/legend-python/lib/python3.9/site-packages:$PYTHONPATH"
 
 RUN true \
     && provisioning/install-sw.sh pygama legend-exp/v0.9.1 /opt/legend-python \
