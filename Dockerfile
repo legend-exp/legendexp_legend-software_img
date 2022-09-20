@@ -34,7 +34,7 @@ COPY provisioning/install-sw-scripts/g4simple-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/g4simple/bin:$PATH"
 
-RUN provisioning/install-sw.sh g4simple legend-exp/59a89c7 /opt/g4simple
+RUN provisioning/install-sw.sh g4simple legend-exp/04381f8 /opt/g4simple
 
 
 # Install gears:
@@ -43,7 +43,7 @@ COPY provisioning/install-sw-scripts/gears-* provisioning/install-sw-scripts/
 
 ENV PATH="/opt/gears/bin:$PATH"
 
-RUN provisioning/install-sw.sh gears jintonic/8ab0f37 /opt/gears
+RUN provisioning/install-sw.sh gears jintonic/5470b35 /opt/gears
 
 
 # Install radware:
