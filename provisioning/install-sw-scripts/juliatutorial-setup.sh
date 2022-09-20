@@ -26,6 +26,8 @@ pkg_install() {
     export OPENBLAS_NUM_THREADS="${DEFAULT_NUM_THREADS}"
     export OMP_NUM_THREADS="${DEFAULT_NUM_THREADS}"
 
+    julia -e 'using Pkg; pkg"registry add General https://github.com/legend-exp/LegendJuliaRegistry.git"'
+
     mkdir -p "${JULIA_PROJECT}"
     cp -a "${INSTALL_PREFIX}"/{Project.toml,Manifest.toml} "${JULIA_PROJECT}"
     julia -e 'import Pkg; Pkg.instantiate()'
