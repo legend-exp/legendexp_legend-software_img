@@ -14,8 +14,8 @@ pkg_installed_check() {
 pkg_install() {
     GITHUB_USER=`echo "${PACKAGE_VERSION}" | cut -d '/' -f 1`
     GIT_BRANCH=`echo "${PACKAGE_VERSION}" | cut -d '/' -f 2`
-    git clone --recursive "https://github.com/${GITHUB_USER}/pygama" pygama
-    (cd pygama && git checkout "${GIT_BRANCH}" && git submodule update)
+    git clone "https://github.com/${GITHUB_USER}/pygama" pygama
+    (cd pygama && git checkout "${GIT_BRANCH}")
 
     export PYTHONUSERBASE="${INSTALL_PREFIX}"
     python3 -m pip install --user ./pygama
