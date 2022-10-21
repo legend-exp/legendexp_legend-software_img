@@ -15,6 +15,7 @@ pkg_install() {
     GITHUB_USER=`echo "${PACKAGE_VERSION}" | cut -d '/' -f 1`
     GIT_BRANCH=`echo "${PACKAGE_VERSION}" | cut -d '/' -f 2`
     git clone "https://github.com/${GITHUB_USER}/legend-julia-tutorial" "${INSTALL_PREFIX}"
+    (cd "${INSTALL_PREFIX}" && git checkout "${GIT_BRANCH}")
 
     export JULIA_DEPOT_PATH="/opt/julia/local/share/julia"
     export JULIA_PROJECT=$(dirname `julia -e 'import Pkg; println(Pkg.project().path)'`)
