@@ -17,6 +17,8 @@ pkg_install() {
     git clone "https://github.com/${GITHUB_USER}/pygama" pygama
     (cd pygama && git checkout "${GIT_BRANCH}")
 
+    (cd pygama && pip install '.[test]' && pytest -W ignore::DeprecationWarning)
+
     export PYTHONUSERBASE="${INSTALL_PREFIX}"
     python3 -m pip install --user ./pygama
 }
