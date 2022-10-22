@@ -32,7 +32,7 @@ pkg_install() {
     python3 installMaGe.py install \
         --jobs=`nproc` \
         --authentication="ssh" \
-        --magebranch="cmake" \
+        --magebranch="main" \
         --buildpath="$BUILDPATH" \
         --installpath="$INSTALL_PREFIX" \
         && echo "MaGe installation successful"
