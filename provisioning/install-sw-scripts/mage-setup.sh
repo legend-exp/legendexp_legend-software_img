@@ -21,9 +21,9 @@ pkg_install() {
     cd legend-swdev-scripts
     git checkout "${GIT_BRANCH}"
 
-    if (root-config --cflags | grep -q 'c++14') ; then
-        sed 's/-DCMAKE_INSTALL_PREFIX/-DCMAKE_CXX_STANDARD=14 -DCMAKE_INSTALL_PREFIX/' -i installMaGe.py
-    fi
+    CXX_STANDARD=`root-config --cflags | sed 's/.*std=c++\([0-9]\+\).*/\1/'`
+    echo "INFO: Building for C++-$CXX_STANDARD" >&2
+    sed 's/CMAKE_CXX_STANDARD=[0-9]\+/CMAKE_CXX_STANDARD='"$CXX_STANDARD"'/' -i installMaGe.py
 
     BUILDPATH="magebuildpath"
 
