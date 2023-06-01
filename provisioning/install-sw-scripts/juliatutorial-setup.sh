@@ -34,7 +34,7 @@ pkg_install() {
     cp -a "${INSTALL_PREFIX}"/{Project.toml,Manifest.toml} "${JULIA_PROJECT}"
     echo -e '\n[CUDA_Runtime_jll]\nversion = "local"' >> "${JULIA_PROJECT}/LocalPreferences.toml"
     julia -e 'import Pkg; Pkg.instantiate()'
-    julia -e 'using Pkg; Pkg.add(["IJulia", "Interact", "Observables", "WebIO", "Widgets", "Pluto", "PlutoUI", "BenchmarkTools", "Revise", "PProf", "StatProfilerHTML", "CPUSummary", "Hwloc", "CUDA", "CUDA_compat_jll", "CUDAKernels"]; preserve=Pkg.PRESERVE_ALL); Pkg.build("IJulia")'
+    julia -e 'using Pkg; Pkg.add(["IJulia", "Interact", "Observables", "WebIO", "Widgets", "Pluto", "PlutoUI", "PlutoHooks", "Revise", "PProf", "StatProfilerHTML", "CPUSummary", "Hwloc", "CUDA", "CUDA_Runtime_jll"]; preserve=Pkg.PRESERVE_ALL); Pkg.build("IJulia")'
 
     (
         cp -a "${INSTALL_PREFIX}" "./julia-tutorial-test"
