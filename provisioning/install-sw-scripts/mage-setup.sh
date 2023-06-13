@@ -52,12 +52,10 @@ pkg_install() {
     )
 
     (
-        cd "$INSTALL_PREFIX"
-        ln -s share/MaGe data
-
-        # Remove non-public data:
-        cd "share/MaGe"
-        rm -rf gerdageometry legendgeometry mjgeometry
+        cp -r "$BUILDPATH/MaGe/source/source/legendgeometry/stl_files" \
+              "$INSTALL_PREFIX/share/MaGe/legendgeometry"
+        cd "$INSTALL_PREFIX/share/MaGe/legendgeometry"
+        ln -s . config_files
     )
 }
 
@@ -69,7 +67,9 @@ LD_LIBRARY_PATH="${INSTALL_PREFIX}/lib:\$LD_LIBRARY_PATH"
 MAGEDIR="${INSTALL_PREFIX}"
 MGGENERATORDATA="$INSTALL_PREFIX/share/MaGe/generators"
 MGGERDAGEOMETRY="$INSTALL_PREFIX/share/MaGe/gerdageometry"
+MAGERESULTS="$INSTALL_PREFIX/share/MaGe/legendgeometry"
+MESHFILESPATH="$MAGERESULTS/stl_files"
 ROOT_INCLUDE_PATH="$INSTALL_PREFIX/include/mgdo:$INSTALL_PREFIX/include/tam:$INSTALL_PREFIX/include/mage:$INSTALL_PREFIX/include/mage-post-proc:\$ROOT_INCLUDE_PATH"
-export PATH LD_LIBRARY_PATH MGGENERATORDATA MGGERDAGEOMETRY ROOT_INCLUDE_PATH
+export PATH LD_LIBRARY_PATH MGGENERATORDATA MGGERDAGEOMETRY ROOT_INCLUDE_PATH MAGERESULTS MESHFILESPATH
 EOF
 }

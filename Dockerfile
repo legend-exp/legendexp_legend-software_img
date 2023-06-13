@@ -2,16 +2,16 @@ FROM legendexp/legend-base:latest
 
 # Note: use
 #
-# DOCKER_BUILDKIT=1 docker build --ssh default -t legendexp/legend-software:latest .
+# DOCKER_BUILDKIT=1 docker build --ssh default=<path-to-ssh-private-key> -t legendexp/legend-software:latest .
 #
 # to build.
 
 
 # Install LEGEND Julia tutorial:
 
-COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
+# COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
 
-RUN provisioning/install-sw.sh juliatutorial legend-exp/2568744 /opt/legend-julia-tutorial
+# RUN provisioning/install-sw.sh juliatutorial legend-exp/2568744 /opt/legend-julia-tutorial
 
 
 # Install LEGEND Python packages:
@@ -24,8 +24,7 @@ COPY \
 ENV PYTHONPATH="/opt/legend-python/lib/python3.9/site-packages:$PYTHONPATH"
 
 RUN true \
-    && provisioning/install-sw.sh pygama legend-exp/v1.3.0 /opt/legend-python \
-    && provisioning/install-sw.sh pyfcutils legend-exp/v0.2.3 /opt/legend-python
+    && provisioning/install-sw.sh pygama legend-exp/v1.3.2 /opt/legend-python
 
 
 # Install g4simple:
@@ -78,6 +77,8 @@ ENV \
     MAGEDIR="/opt/mage" \
     MGGENERATORDATA="/opt/mage/share/MaGe/generators" \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
-    ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:/opt/mage/include/mage:/opt/mage/include/mage-post-proc:$ROOT_INCLUDE_PATH"
+    ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:/opt/mage/include/mage:/opt/mage/include/mage-post-proc:$ROOT_INCLUDE_PATH" \
+    MAGERESULTS="/opt/mage/share/MaGe/legendgeometry" \
+    MESHFILESPATH="/opt/mage/share/MaGe/legendgeometry/stl_files"
 
 RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/e4f0b5d /opt/mage
