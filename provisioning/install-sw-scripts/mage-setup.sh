@@ -54,8 +54,16 @@ pkg_install() {
     (
         cp -r "$BUILDPATH/MaGe/source/source/legendgeometry/stl_files" \
               "$INSTALL_PREFIX/share/MaGe/legendgeometry"
+    )
+
+    (
         cd "$INSTALL_PREFIX/share/MaGe/legendgeometry"
         ln -s . config_files
+    )
+
+    (
+        cd "$INSTALL_PREFIX"
+        ln -s share/MaGe data
     )
 }
 
