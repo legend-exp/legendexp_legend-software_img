@@ -78,6 +78,7 @@ ENV \
     MAGEDIR="/opt/mage" \
     MGGENERATORDATA="/opt/mage/share/MaGe/generators" \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
-    ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:/opt/mage/include/mage:/opt/mage/include/mage-post-proc:$ROOT_INCLUDE_PATH"
+    ROOT_INCLUDE_PATH="/usr/local/include:/opt/mage/include/mgdo:/opt/mage/include/tam:/opt/mage/include/mage:/opt/mage/include/mage-post-proc:$ROOT_INCLUDE_PATH" \
+    PYTHONPATH="/opt/mage/lib/magepostproc:$PYTHONPATH"
 
 RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/3be3872 /opt/mage
