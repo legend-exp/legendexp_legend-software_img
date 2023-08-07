@@ -34,11 +34,6 @@ pkg_install() {
         && echo "MaGe installation successful"
 
     (
-        cd "$INSTALL_PREFIX/bin"
-        for f in ../lib/*.pcm; do ln -s "$f" .; done
-    )
-
-    (
         cd "$INSTALL_PREFIX/lib"
         rm -f *.a
     )
