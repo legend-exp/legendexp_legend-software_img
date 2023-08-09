@@ -16,8 +16,6 @@ pkg_install() {
     GIT_BRANCH=`echo "${PACKAGE_VERSION}" | cut -d '/' -f 2`
     git clone "https://github.com/${GITHUB_USER}/legend-swdev-scripts" legend-swdev-scripts
 
-    source disable-conda.sh
-
     cd legend-swdev-scripts
     git checkout "${GIT_BRANCH}"
 
