@@ -14,42 +14,28 @@ pkg_installed_check() {
 pkg_install() {
     GITHUB_USER=`echo "${PACKAGE_VERSION}" | cut -d '/' -f 1`
     GIT_BRANCH=`echo "${PACKAGE_VERSION}" | cut -d '/' -f 2`
-    git clone "https://github.com/${GITHUB_USER}/legend-swdev-scripts" legend-swdev-scripts
+    git clone "git@github.com:${GITHUB_USER}/MaGe" mage
 
-    cd legend-swdev-scripts
+    cd mage
     git checkout "${GIT_BRANCH}"
+    local cpp_std=$(root-config --cflags | sed -E 's/.*-std=c\+\+([0-9][0-9]).*/\1/')
 
-    BUILDPATH="magebuildpath"
+    mkdir build
+    cd build
+    cmake \
+        -DCMAKE_INSTALL_PREFIX="$INSTALL_PREFIX" \
+        -DCMAKE_CXX_STANDARD="$cpp_std" \
+        ..
 
-    mkdir -p "$INSTALL_PREFIX"
-    mkdir -p "$BUILDPATH"
-    python3 installMaGe.py install \
-        --jobs=`nproc` \
-        --authentication="ssh" \
-        --magebranch="main" \
-        --buildpath="$BUILDPATH" \
-        --installpath="$INSTALL_PREFIX" \
-        && echo "MaGe installation successful"
-
-    (
-        cd "$INSTALL_PREFIX/lib"
-        rm -f *.a
-    )
-
-    (
-        cd "$INSTALL_PREFIX/include/mage"
-        mkdir -p io mjio
-        ln -s ../MGOutputG4StepsData.hh io/
-        ln -s ../MJOutputSegXtal.hh mjio/
-        ln -s ../MJOutputDetectorEventData.hh mjio/
-    )
+    make -j $(nproc)
+    make install
 
     (
         cd "$INSTALL_PREFIX"
         ln -s share/MaGe data
 
         # Remove non-public data:
-        cd "share/MaGe"
+        cd share/MaGe
         rm -rf gerdageometry legendgeometry mjgeometry
     )
 }
@@ -62,7 +48,7 @@ LD_LIBRARY_PATH="${INSTALL_PREFIX}/lib:\$LD_LIBRARY_PATH"
 MAGEDIR="${INSTALL_PREFIX}"
 MGGENERATORDATA="$INSTALL_PREFIX/share/MaGe/generators"
 MGGERDAGEOMETRY="$INSTALL_PREFIX/share/MaGe/gerdageometry"
-ROOT_INCLUDE_PATH="$INSTALL_PREFIX/include/mgdo:$INSTALL_PREFIX/include/tam:$INSTALL_PREFIX/include/mage:$INSTALL_PREFIX/include/mage-post-proc:\$ROOT_INCLUDE_PATH"
+ROOT_INCLUDE_PATH="$INSTALL_PREFIX/include/mage:\$ROOT_INCLUDE_PATH"
 export PATH LD_LIBRARY_PATH MGGENERATORDATA MGGERDAGEOMETRY ROOT_INCLUDE_PATH
 EOF
 }

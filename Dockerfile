@@ -68,7 +68,16 @@ RUN true \
     && ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 
 
-# Install MGDO and MaGe
+# Install MGDO, MaGe and mage-post-proc
+
+COPY provisioning/install-sw-scripts/mgdo-* provisioning/install-sw-scripts/
+
+ENV \
+    PATH="/opt/mgdo/bin:$PATH" \
+    LD_LIBRARY_PATH="/opt/mgdo/lib:$LD_LIBRARY_PATH" \
+    ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:$ROOT_INCLUDE_PATH"
+
+RUN --mount=type=ssh provisioning/install-sw.sh mgdo mppmu/2dec3c1 /opt/mgdo
 
 COPY provisioning/install-sw-scripts/mage-* provisioning/install-sw-scripts/
 
@@ -78,7 +87,15 @@ ENV \
     MAGEDIR="/opt/mage" \
     MGGENERATORDATA="/opt/mage/share/MaGe/generators" \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
-    ROOT_INCLUDE_PATH="/usr/local/include:/opt/mage/include/mgdo:/opt/mage/include/tam:/opt/mage/include/mage:/opt/mage/include/mage-post-proc:$ROOT_INCLUDE_PATH" \
-    PYTHONPATH="/opt/mage/lib/magepostproc:$PYTHONPATH"
+    ROOT_INCLUDE_PATH="/opt/mage/include/mage:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage legend-exp/afcd1e2 /opt/mage
+RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/l200-v1.0.0 /opt/mage
+
+COPY provisioning/install-sw-scripts/mage-post-proc-* provisioning/install-sw-scripts/
+
+ENV \
+    PATH="/opt/mage-post-proc/bin:$PATH" \
+    LD_LIBRARY_PATH="/opt/mage-post-proc/lib:$LD_LIBRARY_PATH" \
+    ROOT_INCLUDE_PATH="/opt/mage-post-proc/include/mage-post-proc:$ROOT_INCLUDE_PATH"
+
+RUN --mount=type=ssh provisioning/install-sw.sh mage-post-proc legend-exp/8d00a64 /opt/mage-post-proc
