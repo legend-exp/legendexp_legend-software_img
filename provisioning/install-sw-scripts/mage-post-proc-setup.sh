@@ -14,9 +14,16 @@ pkg_installed_check() {
 pkg_install() {
     GITHUB_USER=`echo "${PACKAGE_VERSION}" | cut -d '/' -f 1`
     GIT_BRANCH=`echo "${PACKAGE_VERSION}" | cut -d '/' -f 2`
-    git clone "git@github.com:${GITHUB_USER}/mage-post-proc" mage-post-proc
 
-    cd mage-post-proc
+    # HACK: mage-post-proc build directory cannot be deleted, see
+    # https://github.com/legend-exp/mage-post-proc/issues/53
+    # remove this hack once that issue is closed
+
+    mkdir -p "$INSTALL_PREFIX"
+    cd "$INSTALL_PREFIX"
+    git clone "git@github.com:${GITHUB_USER}/mage-post-proc" src
+
+    cd src
     git checkout "${GIT_BRANCH}"
 
     mkdir build

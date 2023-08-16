@@ -89,7 +89,7 @@ ENV \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
     ROOT_INCLUDE_PATH="/opt/mage/include/mage:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/l200-v1.0.0 /opt/mage
+RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/4332f07 /opt/mage
 
 COPY provisioning/install-sw-scripts/mage-post-proc-* provisioning/install-sw-scripts/
 
