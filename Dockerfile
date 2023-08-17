@@ -19,13 +19,15 @@ RUN provisioning/install-sw.sh juliatutorial legend-exp/2568744 /opt/legend-juli
 COPY \
     provisioning/install-sw-scripts/pygama-* \
     provisioning/install-sw-scripts/pyfcutils-* \
+    provisioning/install-sw-scripts/pylegendmeta-* \
     provisioning/install-sw-scripts/
 
 ENV PYTHONPATH="/opt/legend-python/lib/python3.9/site-packages:$PYTHONPATH"
 
 RUN true \
     && provisioning/install-sw.sh pygama legend-exp/v1.3.2 /opt/legend-python \
-    && provisioning/install-sw.sh pyfcutils legend-exp/v0.2.3 /opt/legend-python
+    && provisioning/install-sw.sh pyfcutils legend-exp/v0.2.3 /opt/legend-python \
+    && provisioning/install-sw.sh pylegendmeta legend-exp/v0.7.13 /opt/legend-python
 
 
 # Install g4simple:
@@ -89,7 +91,7 @@ ENV \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
     ROOT_INCLUDE_PATH="/opt/mage/include/mage:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/4332f07 /opt/mage
+RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/l200-v1.0.0 /opt/mage
 
 COPY provisioning/install-sw-scripts/mage-post-proc-* provisioning/install-sw-scripts/
 
