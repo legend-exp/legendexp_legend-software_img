@@ -7,13 +7,6 @@ FROM legendexp/legend-base:latest
 # to build.
 
 
-# Install LEGEND Julia tutorial:
-
-COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
-
-RUN provisioning/install-sw.sh juliatutorial legend-exp/2edf6b9 /opt/legend-julia-tutorial
-
-
 # Install LEGEND Python packages:
 
 COPY \
