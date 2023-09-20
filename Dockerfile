@@ -18,9 +18,9 @@ COPY \
 ENV PYTHONPATH="/opt/legend-python/lib/python3.9/site-packages:$PYTHONPATH"
 
 RUN true \
-    && provisioning/install-sw.sh pygama legend-exp/v1.3.2 /opt/legend-python \
+    && provisioning/install-sw.sh pygama legend-exp/v1.4.0 /opt/legend-python \
     && provisioning/install-sw.sh pyfcutils legend-exp/v0.2.4 /opt/legend-python \
-    && provisioning/install-sw.sh pylegendmeta legend-exp/v0.7.13 /opt/legend-python
+    && provisioning/install-sw.sh pylegendmeta legend-exp/v0.8.2 /opt/legend-python
 
 
 # Install g4simple:
@@ -63,7 +63,7 @@ RUN true \
     && ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 
 
-# Install MGDO, MaGe and mage-post-proc
+# Install MGDO
 
 COPY provisioning/install-sw-scripts/mgdo-* provisioning/install-sw-scripts/
 
@@ -73,6 +73,9 @@ ENV \
     ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:$ROOT_INCLUDE_PATH"
 
 RUN --mount=type=ssh provisioning/install-sw.sh mgdo mppmu/ab61169 /opt/mgdo
+
+
+# Install MaGe
 
 COPY provisioning/install-sw-scripts/mage-* provisioning/install-sw-scripts/
 
@@ -84,7 +87,10 @@ ENV \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
     ROOT_INCLUDE_PATH="/opt/mage/include/mage:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/4332f07 /opt/mage
+RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/cc3e5e4 /opt/mage
+
+
+# Install mage-post-proc
 
 COPY provisioning/install-sw-scripts/mage-post-proc-* provisioning/install-sw-scripts/
 
@@ -93,4 +99,4 @@ ENV \
     LD_LIBRARY_PATH="/opt/mage-post-proc/lib:$LD_LIBRARY_PATH" \
     ROOT_INCLUDE_PATH="/opt/mage-post-proc/include/mage-post-proc:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage-post-proc legend-exp/3ec9fb8 /opt/mage-post-proc
+RUN --mount=type=ssh provisioning/install-sw.sh mage-post-proc legend-exp/7c79931 /opt/mage-post-proc
