@@ -25,6 +25,7 @@ pkg_install() {
     cmake \
         -DCMAKE_INSTALL_PREFIX="$INSTALL_PREFIX" \
         -DCMAKE_CXX_STANDARD="$cpp_std" \
+        -DCMAKE_CXX_FLAGS="-w" \
         ..
 
     make -j $(nproc)
