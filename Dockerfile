@@ -72,7 +72,7 @@ ENV \
     LD_LIBRARY_PATH="/opt/mgdo/lib:$LD_LIBRARY_PATH" \
     ROOT_INCLUDE_PATH="/opt/mage/include/mgdo:/opt/mage/include/tam:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mgdo mppmu/ab61169 /opt/mgdo
+RUN --mount=type=ssh provisioning/install-sw.sh mgdo mppmu/d7b860b /opt/mgdo
 
 
 # Install MaGe
@@ -87,7 +87,7 @@ ENV \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
     ROOT_INCLUDE_PATH="/opt/mage/include/mage:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/cc3e5e4 /opt/mage
+RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/50c6c36 /opt/mage
 
 
 # Install mage-post-proc
