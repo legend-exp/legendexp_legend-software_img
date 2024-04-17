@@ -87,7 +87,7 @@ ENV \
     MGGERDAGEOMETRY="/opt/mage/share/MaGe/gerdageometry" \
     ROOT_INCLUDE_PATH="/opt/mage/include/mage:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/50c6c36 /opt/mage
+RUN --mount=type=ssh provisioning/install-sw.sh mage mppmu/aa4ad59 /opt/mage
 
 
 # Install mage-post-proc
