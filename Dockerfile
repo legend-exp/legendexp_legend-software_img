@@ -18,9 +18,9 @@ COPY \
 ENV PYTHONPATH="/opt/legend-python/lib/python3.9/site-packages:$PYTHONPATH"
 
 RUN true \
-    && provisioning/install-sw.sh pygama legend-exp/v1.6.0 /opt/legend-python \
+    && provisioning/install-sw.sh pygama legend-exp/v2.0.1 /opt/legend-python \
     && provisioning/install-sw.sh pyfcutils legend-exp/v0.2.4 /opt/legend-python \
-    && provisioning/install-sw.sh pylegendmeta legend-exp/v0.9.0 /opt/legend-python
+    && provisioning/install-sw.sh pylegendmeta legend-exp/v0.10.2 /opt/legend-python
 
 
 # Install g4simple:
