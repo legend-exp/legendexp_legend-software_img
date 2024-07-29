@@ -7,6 +7,17 @@ FROM legendexp/legend-base:latest
 # to build.
 
 
+# Install LEGEND Julia tutorial and additional Julia packages:
+
+COPY provisioning/install-sw-scripts/juliatutorial-* provisioning/install-sw-scripts/
+
+ENV \
+    JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)" \
+    JULIA_PKG_PRESERVE_TIERED_INSTALLED="true"
+
+RUN provisioning/install-sw.sh juliatutorial legend-exp/70da5a7 /opt/legend-julia-tutorial
+
+
 # Install LEGEND Python packages:
 
 COPY \
