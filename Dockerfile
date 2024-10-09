@@ -111,4 +111,4 @@ ENV \
     LD_LIBRARY_PATH="/opt/mage-post-proc/lib:$LD_LIBRARY_PATH" \
     ROOT_INCLUDE_PATH="/opt/mage-post-proc/include/mage-post-proc:$ROOT_INCLUDE_PATH"
 
-RUN --mount=type=ssh provisioning/install-sw.sh mage-post-proc legend-exp/7c79931 /opt/mage-post-proc
+RUN --mount=type=ssh provisioning/install-sw.sh mage-post-proc legend-exp/7076f8f /opt/mage-post-proc
