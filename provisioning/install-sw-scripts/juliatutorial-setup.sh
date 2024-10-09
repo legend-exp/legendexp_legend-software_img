@@ -31,7 +31,8 @@ pkg_install() {
 
     mkdir temp-jl-project
     export JULIA_PROJECT="`pwd`/temp-jl-project"
-    cp -a "${INSTALL_PREFIX}"/{Project.toml,Manifest.toml} "${JULIA_PROJECT}"
+    MANIFEST_NAME=`julia -e 'println("Manifest-v$(VERSION.major).$(VERSION.minor).toml")'`
+    cp -a "${INSTALL_PREFIX}"/{Project.toml,"$MANIFEST_NAME"} "${JULIA_PROJECT}"
     echo -e '\n[CUDA_Runtime_jll]\nlocal = "true"\nversion = "local"' >> "${JULIA_PROJECT}/LocalPreferences.toml"
     julia -e 'import Pkg; Pkg.instantiate()'
 
