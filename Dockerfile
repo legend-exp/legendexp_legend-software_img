@@ -15,7 +15,7 @@ ENV \
     JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)" \
     JULIA_PKG_PRESERVE_TIERED_INSTALLED="true"
 
-RUN provisioning/install-sw.sh juliatutorial legend-exp/10d44c8 /opt/legend-julia-tutorial
+RUN provisioning/install-sw.sh juliatutorial legend-exp/0074fe2 /opt/legend-julia-tutorial
 
 
 # Install LEGEND Python packages:
