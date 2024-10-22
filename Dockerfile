@@ -32,7 +32,7 @@ RUN true \
     && pip3 install bottleneck==1.3.6 \
     && provisioning/install-sw.sh pygama legend-exp/v2.0.3 /opt/legend-python \
     && provisioning/install-sw.sh pyfcutils legend-exp/v0.2.4 /opt/legend-python \
-    && provisioning/install-sw.sh pylegendmeta legend-exp/v1.0.0 /opt/legend-python
+    && provisioning/install-sw.sh pylegendmeta legend-exp/v1.0.1 /opt/legend-python
 
 
 # Install g4simple:
