@@ -19,7 +19,7 @@ pkg_install() {
 
     export JULIA_DEPOT_PATH="/opt/julia/local/share/julia:"
  
-    export JUPYTER_DATA_DIR="/opt/anaconda3/share/jupyter"
+    export JUPYTER_DATA_DIR="/opt/conda/share/jupyter"
 
     DEFAULT_NUM_THREADS=`lscpu -p | grep '^[0-9]\+,[0-9]\+,[0-9]\+,0,' | cut -d ',' -f 2 | sort | uniq | wc -l`
     export JULIA_NUM_THREADS="${DEFAULT_NUM_THREADS}"
