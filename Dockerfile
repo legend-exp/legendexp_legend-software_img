@@ -7,34 +7,6 @@ FROM legendexp/legend-base:latest
 # to build.
 
 
-# Install LEGEND Julia base packages:
-
-COPY provisioning/install-sw-scripts/juliapackages-* provisioning/install-sw-scripts/
-
-ENV \
-    JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)" \
-    JULIA_PKG_PRESERVE_TIERED_INSTALLED="true"
-
-RUN provisioning/install-sw.sh juliapackages legend-exp/6775e7c /opt/legend-julia-base-env
-
-
-# Install LEGEND Python packages:
-
-COPY \
-    provisioning/install-sw-scripts/pygama-* \
-    provisioning/install-sw-scripts/pyfcutils-* \
-    provisioning/install-sw-scripts/pylegendmeta-* \
-    provisioning/install-sw-scripts/
-
-ENV PYTHONPATH="/opt/legend-python/lib/python3.9/site-packages:$PYTHONPATH"
-
-RUN true \
-    && pip3 install bottleneck==1.3.6 \
-    && provisioning/install-sw.sh pygama legend-exp/v2.0.4 /opt/legend-python \
-    && provisioning/install-sw.sh pyfcutils legend-exp/v0.2.4 /opt/legend-python \
-    && provisioning/install-sw.sh pylegendmeta legend-exp/v1.1.0 /opt/legend-python
-
-
 # Install g4simple:
 
 COPY provisioning/install-sw-scripts/g4simple-* provisioning/install-sw-scripts/
@@ -112,3 +84,31 @@ ENV \
     ROOT_INCLUDE_PATH="/opt/mage-post-proc/include/mage-post-proc:$ROOT_INCLUDE_PATH"
 
 RUN --mount=type=ssh provisioning/install-sw.sh mage-post-proc legend-exp/7076f8f /opt/mage-post-proc
+
+
+# Install LEGEND Python packages:
+
+    COPY \
+    provisioning/install-sw-scripts/pygama-* \
+    provisioning/install-sw-scripts/pyfcutils-* \
+    provisioning/install-sw-scripts/pylegendmeta-* \
+    provisioning/install-sw-scripts/
+
+ENV PYTHONPATH="/opt/legend-python/lib/python3.9/site-packages:$PYTHONPATH"
+
+RUN true \
+    && pip3 install bottleneck==1.3.6 \
+    && provisioning/install-sw.sh pygama legend-exp/v2.0.4 /opt/legend-python \
+    && provisioning/install-sw.sh pyfcutils legend-exp/v0.2.4 /opt/legend-python \
+    && provisioning/install-sw.sh pylegendmeta legend-exp/v1.1.0 /opt/legend-python
+
+
+# Install LEGEND Julia base packages:
+
+COPY provisioning/install-sw-scripts/juliapackages-* provisioning/install-sw-scripts/
+
+ENV \
+    JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)" \
+    JULIA_PKG_PRESERVE_TIERED_INSTALLED="true"
+
+RUN provisioning/install-sw.sh juliapackages legend-exp/6775e7c /opt/legend-julia-base-env
