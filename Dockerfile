@@ -111,4 +111,4 @@ ENV \
     JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)" \
     JULIA_PKG_PRESERVE_TIERED_INSTALLED="true"
 
-RUN provisioning/install-sw.sh juliapackages legend-exp/6775e7c /opt/legend-julia-base-env
+RUN provisioning/install-sw.sh juliapackages legend-exp/37c01fc /opt/legend-julia-base-env
