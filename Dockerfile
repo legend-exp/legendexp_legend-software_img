@@ -98,9 +98,9 @@ ENV PYTHONPATH="/opt/legend-python/lib/python3.9/site-packages:$PYTHONPATH"
 
 RUN true \
     && pip3 install bottleneck==1.3.6 \
-    && provisioning/install-sw.sh pygama legend-exp/v2.0.4 /opt/legend-python \
+    && provisioning/install-sw.sh pygama legend-exp/v2.0.5 /opt/legend-python \
     && provisioning/install-sw.sh pyfcutils legend-exp/v0.2.4 /opt/legend-python \
-    && provisioning/install-sw.sh pylegendmeta legend-exp/v1.1.0 /opt/legend-python
+    && provisioning/install-sw.sh pylegendmeta legend-exp/v1.2.5 /opt/legend-python
 
 
 # Install LEGEND Julia base packages:
